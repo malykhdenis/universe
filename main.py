@@ -1,15 +1,19 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 import requests
 
-Path("images").mkdir(parents=True, exist_ok=True)
+load_dotenv()
 
 headers = {
-  'Authorization': f'Bearer {os.environ["WIKIMEDIA_TOKEN"]}',
+  'Authorization': f'Bearer {os.getenv("WIKIMEDIA_TOKEN")}',
 }
 
-filename = 'hubble.jpeg'
+Path('images').mkdir(parents=True, exist_ok=True)
+
+filename = 'images/hubble.jpeg' 
+
 url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
 
 response = requests.get(url, headers=headers)
