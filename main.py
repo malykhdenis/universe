@@ -2,8 +2,9 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+from urllib.parse import urlparse, unquote_plus
 import requests
-import urllib.parse
+import urllib.parse as up
 
 load_dotenv()
 
@@ -37,7 +38,7 @@ def fetch_spacex_last_launch():
 
 def get_format(url):
 	"""Get format of the file by url."""
-	parse_path = urllib.parse.urlparse(url).path
+	parse_path = unquote_plus(urlparse(url).path)
 	_, file_format = os.path.splitext(parse_path)
 	return file_format
 
