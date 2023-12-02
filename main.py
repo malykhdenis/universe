@@ -3,6 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 import requests
+import urllib.parse
 
 load_dotenv()
 
@@ -34,5 +35,13 @@ def fetch_spacex_last_launch():
 		photo_number += 1
 
 
+def get_format(url):
+	"""Get format of the file by url."""
+	parse_path = urllib.parse.urlparse(url).path
+	_, file_format = os.path.splitext(parse_path)
+	return file_format
+
+
+
 if __name__ == '__main__':
-	fetch_spacex_last_launch()
+	print(get_format('https://example.com/txt/hello%20world.txt?v=9#python'))
