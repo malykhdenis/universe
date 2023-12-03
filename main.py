@@ -22,19 +22,6 @@ def download_image(url, path):
   		file.write(response.content)
 
 
-def fetch_spacex_last_launch():
-	"""Download photos from spaceX."""
-	Path('images').mkdir(parents=True, exist_ok=True)
-	response_to_spacex = requests.get('https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a')
-	response_to_spacex.raise_for_status()
-	photos = response_to_spacex.json()['links']['flickr']['original']
-	photo_number = 0
-	for photo in photos:
-		with open(f'images/spacex_{photo_number}.jpeg', 'wb') as file:
-  			file.write(requests.get(photo).content)
-		photo_number += 1
-
-
 def get_format(url):
 	"""Get format of the file by url."""
 	parse_path = unquote_plus(urlparse(url).path)
@@ -58,7 +45,7 @@ def download_nasa_images():
 	photo_number = 0
 	for photo in photos:
 		with open(f'images/nasa/nasa_apod_{photo_number}.jpeg', 'wb') as file:
-  			file.write(requests.get(photo['url']).content)
+			file.write(requests.get(photo['url']).content)
 		photo_number += 1
 
 
@@ -80,7 +67,7 @@ def download_epic_photo():
 		date = photo['date'].split()[0]
 		year, month, day = date.split('-')
 		with open(f'images/nasa/nasa_earth_{photo_number}.jpeg', 'wb') as file:
-  			file.write(
+			file.write(
 				requests.get(
 					f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{name}.png',
 					params=payload
