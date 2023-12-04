@@ -23,7 +23,7 @@ def fetch_spacex_last_launch():
         with open(f'images/spacex_{photo_number}.jpeg', 'wb') as file:
             file.write(requests.get(photo).content)
         photo_number += 1
-		
+
 
 if __name__ == '__main__':
-	fetch_spacex_last_launch()
+    fetch_spacex_last_launch()
