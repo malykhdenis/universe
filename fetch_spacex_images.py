@@ -7,7 +7,8 @@ import argparse
 def fetch_spacex_last_launch():
     """Download photos from spaceX."""
     Path('images').mkdir(parents=True, exist_ok=True)
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description='Download photos of SpaceX launches')
     parser.add_argument(
          '-id', default='latest', help='launch id', required=False)
     args = parser.parse_args()

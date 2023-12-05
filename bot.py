@@ -7,15 +7,16 @@ from dotenv import load_dotenv
 import telegram
 
 
-def send_random_photo():
-    """Send random photo from folder images/."""
-    parser = argparse.ArgumentParser()
+def public_image():
+    """Public random image from folder images/."""
+    parser = argparse.ArgumentParser(
+        description='Public image from image/')
     parser.add_argument(
             'hours',
             nargs='?',
             default=4,
             type=int,
-            help='hours of delay'
+            help='hours of delay',
     )
     args = parser.parse_args()
     path, dirs, images = tuple(os.walk('images/'))[0]
@@ -34,4 +35,4 @@ if __name__ == '__main__':
     load_dotenv()
     bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
     telegram_channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
-    send_random_photo()
+    public_image()
