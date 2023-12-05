@@ -17,8 +17,7 @@ def fetch_epic_nasa_images():
     )
     response.raise_for_status()
     photos = response.json()
-    photo_number = 0
-    for photo in photos:
+    for photo_number, photo in enumerate(photos):
         name = photo['image']
         date = photo['date'].split()[0]
         year, month, day = date.split('-')
@@ -30,7 +29,6 @@ def fetch_epic_nasa_images():
                 )
             response_content.raise_for_status()
             file.write(response_content.content)
-        photo_number += 1
 
 
 if __name__ == '__main__':

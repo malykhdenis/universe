@@ -16,13 +16,11 @@ def fetch_spacex_last_launch():
         f'https://api.spacexdata.com/v5/launches/{args.id}')
     response_to_spacex.raise_for_status()
     photos = response_to_spacex.json()['links']['flickr']['original']
-    photo_number = 0
-    for photo in photos:
+    for photo_number, photo in enumerate(photos):
         with open(f'images/spacex_{photo_number}.jpeg', 'wb') as file:
             response_content = requests.get(photo)
             response_content.raise_for_status()
             file.write(response_content.content)
-        photo_number += 1
 
 
 if __name__ == '__main__':

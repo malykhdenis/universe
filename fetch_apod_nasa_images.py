@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import requests
 
-NUMBER_IMG = 30  # number of images for downloading
+NUMBER_IMG = 5  # number of images for downloading
 
 
 def fetch_apod_nasa_images():
@@ -20,13 +20,11 @@ def fetch_apod_nasa_images():
     )
     response_nasa.raise_for_status()
     photos = response_nasa.json()
-    photo_number = 0
-    for photo in photos:
+    for photo_number, photo in enumerate(photos):
         with open(f'images/nasa/nasa_apod_{photo_number}.jpeg', 'wb') as file:
             response_content = requests.get(photo['url'])
             response_content.raise_for_status()
             file.write(response_content.content)
-        photo_number += 1
 
 
 if __name__ == '__main__':
