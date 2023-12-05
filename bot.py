@@ -6,6 +6,9 @@ import time
 from dotenv import load_dotenv
 import telegram
 
+BYTES_IN_MEGABYTE = 1_048_567
+MAX_FILE_SIZE = 20  # in MB
+
 
 def public_image():
     """Public random image from folder images/."""
@@ -22,7 +25,7 @@ def public_image():
     path, dirs, images = tuple(os.walk('images/'))[0]
     while True:
         path_to_file = os.path.join(path, random.choice(images))
-        if os.path.getsize(path_to_file) / 1_048_567 > 20:
+        if os.path.getsize(path_to_file) / BYTES_IN_MEGABYTE > MAX_FILE_SIZE:
             continue
         bot.send_photo(
             chat_id=telegram_channel_id,
