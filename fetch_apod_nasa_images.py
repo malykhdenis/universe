@@ -9,7 +9,7 @@ def fetch_apod_nasa_images():
     """Download photos from NASA."""
     Path('images/nasa').mkdir(parents=True, exist_ok=True)
     payload = {
-        'api_key': os.getenv('NASA_TOKEN'),
+        'api_key': nasa_token,
         'count': 30,
     }
     response_nasa = requests.get(
@@ -27,4 +27,5 @@ def fetch_apod_nasa_images():
 
 if __name__ == '__main__':
     load_dotenv()
+    nasa_token = os.getenv('NASA_TOKEN')
     fetch_apod_nasa_images()

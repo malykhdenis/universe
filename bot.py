@@ -9,8 +9,6 @@ import telegram
 
 def send_random_photo():
     """Send random photo from folder images/."""
-    bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
-    channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
     parser = argparse.ArgumentParser()
     parser.add_argument(
             'hours',
@@ -26,7 +24,7 @@ def send_random_photo():
         if os.path.getsize(path_to_file) / 1_048_567 > 20:
             continue
         bot.send_photo(
-            chat_id=channel_id,
+            chat_id=telegram_channel_id,
             photo=open(f'{path_to_file}', 'rb'),
         )
         time.sleep(3600 * args.hours)
@@ -34,4 +32,6 @@ def send_random_photo():
 
 if __name__ == '__main__':
     load_dotenv()
+    bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
+    telegram_channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
     send_random_photo()

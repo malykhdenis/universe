@@ -9,7 +9,7 @@ def fetch_epic_nasa_images():
     """Download photos of Earth from NASA."""
     Path('images/nasa').mkdir(parents=True, exist_ok=True)
     payload = {
-        'api_key': os.getenv('NASA_TOKEN'),
+        'api_key': nasa_token,
     }
     response = requests.get(
         'https://api.nasa.gov/EPIC/api/natural/images',
@@ -33,4 +33,5 @@ def fetch_epic_nasa_images():
 
 if __name__ == '__main__':
     load_dotenv()
+    nasa_token = os.getenv('NASA_TOKEN')
     fetch_epic_nasa_images()

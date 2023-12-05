@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 from urllib.parse import urlparse, unquote_plus
 import requests
 
@@ -11,7 +12,7 @@ def download_image(url, path):
     path_to_photo.mkdir(parents=True, exist_ok=True)
     filename = 'hubble.jpeg'
     headers = {
-        'Authorization': f'Bearer {os.getenv("WIKIMEDIA_TOKEN")}',
+        'Authorization': f'Bearer {wikimedia_token}',
     }
     response = requests.get(url, headers=headers)
     response.raise_for_status()
@@ -24,3 +25,8 @@ def get_format(url):
     parse_path = unquote_plus(urlparse(url).path)
     _, file_format = os.path.splitext(parse_path)
     return file_format
+
+
+if __name__ == '__main__':
+    load_dotenv()
+    wikimedia_token = os.getenv("WIKIMEDIA_TOKEN")
