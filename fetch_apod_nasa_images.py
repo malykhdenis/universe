@@ -23,7 +23,9 @@ def fetch_apod_nasa_images():
     photo_number = 0
     for photo in photos:
         with open(f'images/nasa/nasa_apod_{photo_number}.jpeg', 'wb') as file:
-            file.write(requests.get(photo['url']).content)
+            response_content = requests.get(photo['url'])
+            response_content.raise_for_status()
+            file.write(response_content.content)
         photo_number += 1
 
 

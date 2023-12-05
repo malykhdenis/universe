@@ -23,11 +23,13 @@ def fetch_epic_nasa_images():
         date = photo['date'].split()[0]
         year, month, day = date.split('-')
         with open(f'images/nasa/nasa_earth_{photo_number}.jpeg', 'wb') as file:
-            file.write(requests.get(
+            response_content = requests.get(
                 (f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/'
                  f'{day}/png/{name}.png'),
                 params=payload,
-                ).content)
+                )
+            response_content.raise_for_status()
+            file.write(response_content.content)
         photo_number += 1
 
 

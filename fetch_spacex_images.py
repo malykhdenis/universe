@@ -19,7 +19,9 @@ def fetch_spacex_last_launch():
     photo_number = 0
     for photo in photos:
         with open(f'images/spacex_{photo_number}.jpeg', 'wb') as file:
-            file.write(requests.get(photo).content)
+            response_content = requests.get(photo)
+            response_content.raise_for_status()
+            file.write(response_content.content)
         photo_number += 1
 
 
