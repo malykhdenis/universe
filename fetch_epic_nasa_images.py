@@ -4,8 +4,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import requests
 
-load_dotenv()
-
 
 def fetch_epic_nasa_images():
     """Download photos of Earth from NASA."""
@@ -34,4 +32,5 @@ def fetch_epic_nasa_images():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     fetch_epic_nasa_images()

@@ -6,8 +6,6 @@ import time
 from dotenv import load_dotenv
 import telegram
 
-load_dotenv()
-
 
 def send_random_photo():
     """Send random photo from folder images/."""
@@ -35,4 +33,5 @@ def send_random_photo():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     send_random_photo()

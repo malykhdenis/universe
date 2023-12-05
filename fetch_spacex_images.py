@@ -1,10 +1,7 @@
 from pathlib import Path
 
-from dotenv import load_dotenv
 import requests
 import argparse
-
-load_dotenv()
 
 
 def fetch_spacex_last_launch():

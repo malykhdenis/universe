@@ -1,11 +1,8 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 from urllib.parse import urlparse, unquote_plus
 import requests
-
-load_dotenv()
 
 
 def download_image(url, path):
