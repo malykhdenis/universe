@@ -27,6 +27,10 @@ python bot.py *время между публикациями в часах(це
 ```
 По умолчанию время между публикациями - 4 часа.
 
+Для запуска потребуется API токен Telegram бота и ID канала в Telegram.
+Их нужно поместить в переменные TELEGRAM_TOKEN и TELEGRAM_CHANNEL_ID в файле
+.env в корневой папке.
+
 ## fetch_apod_nasa_images.py
 Скачивает фото космоса с сайта NASA. 
 ### Как пользоваться скриптом
@@ -37,6 +41,10 @@ python bot.py *время между публикациями в часах(це
 python fetch_apod_nasa_images.py
 ```
 
+Для запуска потребуется API токен NASA. Получить можно по ссылке 
+[NASA](https://api.nasa.gov/). Его нужно поместить в переменную NASA_TOKEN 
+в файле .env в корневой папке.
+
 ## fetch_epic_nasa_images.py
 Скачивает фото Земли с сайта NASA. 
 ### Как пользоваться скриптом
@@ -46,6 +54,10 @@ python fetch_apod_nasa_images.py
 ```
 python fetch_epic_nasa_images.py
 ```
+
+Для запуска потребуется API токен NASA. Получить можно по ссылке 
+[NASA](https://api.nasa.gov/). Его нужно поместить в переменную NASA_TOKEN 
+в файле .env в корневой папке.
 
 ## fetch_spacex_images.py
 Скачивает фото с запуска ракет SpaceX. 
