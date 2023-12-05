@@ -10,7 +10,7 @@ import telegram
 def send_random_photo():
     """Send random photo from folder images/."""
     bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
-    channel_id = os.getenv('CHANNEL_ID')
+    channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
     parser = argparse.ArgumentParser()
     parser.add_argument(
             'hours',
