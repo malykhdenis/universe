@@ -27,11 +27,12 @@ def public_image():
         path_to_file = os.path.join(path, random.choice(images))
         if os.path.getsize(path_to_file) / BYTES_IN_MEGABYTE > MAX_FILE_SIZE:
             continue
-        bot.send_photo(
-            chat_id=telegram_channel_id,
-            photo=open(f'{path_to_file}', 'rb'),
-        )
-        time.sleep(3600 * args.hours)
+        with open(f'{path_to_file}', 'rb') as photo:
+            bot.send_photo(
+                chat_id=telegram_channel_id,
+                photo=photo,
+            )
+            time.sleep(3600 * args.hours)
 
 
 if __name__ == '__main__':
