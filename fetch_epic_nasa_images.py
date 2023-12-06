@@ -1,13 +1,13 @@
 import os
-from pathlib import Path
 
 from dotenv import load_dotenv
 import requests
 
+from download_image import download_image
+
 
 def fetch_epic_nasa_images(nasa_token):
     """Download photos of Earth from NASA."""
-    Path('images/nasa').mkdir(parents=True, exist_ok=True)
     payload = {
         'api_key': nasa_token,
     }
@@ -21,14 +21,12 @@ def fetch_epic_nasa_images(nasa_token):
         name = photo['image']
         date = photo['date'].split()[0]
         year, month, day = date.split('-')
-        response_content = requests.get(
-                (f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/'
-                 f'{day}/png/{name}.png'),
-                params=payload,
-                )
-        response_content.raise_for_status()
-        with open(f'images/nasa/nasa_earth_{photo_number}.jpeg', 'wb') as file:
-            file.write(response_content.content)
+        download_image(
+            (f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/'
+             f'{day}/png/{name}.png'),
+            request_params=payload,
+            name=f'nasa_earth_{photo_number}',
+        )
 
 
 if __name__ == '__main__':
