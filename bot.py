@@ -6,12 +6,11 @@ import time
 from dotenv import load_dotenv
 import telegram
 
-BYTES_IN_MEGABYTE = 1_048_567
-MAX_FILE_SIZE = 20  # in MB
 
-
-def public_image():
-    """Public random image from folder images/."""
+def public_image(telegram_channel_id):
+    """Public in Telegram channel random image from folder images/."""
+    BYTES_IN_MEGABYTE = 1_048_567
+    MAX_FILE_SIZE = 20  # Maximum size of file for uploading in Telegram in MB
     parser = argparse.ArgumentParser(
         description='Public image from image/')
     parser.add_argument(
@@ -39,4 +38,4 @@ if __name__ == '__main__':
     load_dotenv()
     bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
     telegram_channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
-    public_image()
+    public_image(telegram_channel_id)
