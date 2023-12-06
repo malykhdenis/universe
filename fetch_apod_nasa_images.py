@@ -5,12 +5,12 @@ from dotenv import load_dotenv
 import requests
 
 
-def fetch_apod_nasa_images(nasa_token, number_img=5):
+def fetch_apod_nasa_images(nasa_token, images_number=5):
     """Download photos from NASA."""
     Path('images/nasa').mkdir(parents=True, exist_ok=True)
     payload = {
         'api_key': nasa_token,
-        'count': number_img,  # number of images for downloading
+        'count': images_number,  # number of images for downloading
     }
     response_nasa = requests.get(
         'https://api.nasa.gov/planetary/apod',
