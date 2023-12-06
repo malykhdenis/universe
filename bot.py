@@ -31,7 +31,7 @@ def public_image(telegram_channel_id):
                 chat_id=telegram_channel_id,
                 photo=photo,
             )
-            time.sleep(3600 * args.hours)
+        time.sleep(3600 * args.hours)
 
 
 if __name__ == '__main__':

@@ -17,9 +17,9 @@ def fetch_spacex_last_launch():
     response_to_spacex.raise_for_status()
     photos = response_to_spacex.json()['links']['flickr']['original']
     for photo_number, photo in enumerate(photos):
+        response_content = requests.get(photo)
+        response_content.raise_for_status()
         with open(f'images/spacex_{photo_number}.jpeg', 'wb') as file:
-            response_content = requests.get(photo)
-            response_content.raise_for_status()
             file.write(response_content.content)
 
 

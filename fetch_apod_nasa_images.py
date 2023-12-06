@@ -19,9 +19,9 @@ def fetch_apod_nasa_images(nasa_token, images_number=5):
     response_nasa.raise_for_status()
     photos = response_nasa.json()
     for photo_number, photo in enumerate(photos):
+        response_content = requests.get(photo['url'])
+        response_content.raise_for_status()
         with open(f'images/nasa/nasa_apod_{photo_number}.jpeg', 'wb') as file:
-            response_content = requests.get(photo['url'])
-            response_content.raise_for_status()
             file.write(response_content.content)
 
 
