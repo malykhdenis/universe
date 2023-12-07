@@ -4,9 +4,11 @@ from pathlib import Path
 import requests
 
 
-def download_image(url, request_params={}, path='images/', name='image'):
+def download_image(url, request_params=None, path='images/', name='image'):
     """Download image to directory."""
     Path(path).mkdir(parents=True, exist_ok=True)
+    if request_params is None:
+        request_params = {}
     response_content = requests.get(url, request_params)
     response_content.raise_for_status()
     with open(f'{path}{name}.jpeg', 'wb') as file:

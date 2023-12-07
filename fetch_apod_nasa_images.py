@@ -36,4 +36,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     load_dotenv()
     nasa_token = os.getenv('NASA_TOKEN')
-    fetch_apod_nasa_images(nasa_token, *args)
+    fetch_apod_nasa_images(nasa_token, args.images_number)
